@@ -1,14 +1,16 @@
 # Project Overview: Automated DevOps Pipeline for a Spring Boot Application
-
+***
 ## Introduction
 
-This project aims to establish a fully automated DevOps pipeline for deploying a Spring Boot application. Leveraging a suite of powerful tools including Jenkins, OpenShift, Terraform, Ansible, and Docker, the project embodies the principles of Infrastructure as Code (IaC), Continuous Integration (CI), and Continuous Deployment (CD). The end goal is to achieve streamlined, automated, and efficient deployment processes with robust monitoring and alerting capabilities.
+This project seeks to provide a completely automated DevOps pipeline for deploying a Spring Boot application. The project embraces the ideas of Infrastructure as Code (IaC), Continuous Integration (CI), and Continuous Deployment (CD), utilising a range of strong technologies such as Jenkins, OpenShift, Terraform, Ansible, and Docker. The ultimate aim is to have simplified, automated, and fast deployment procedures that include powerful monitoring and alerting capabilities.
 
+***
+## Architecture Overview
 <p align="center"><img src="./screenshots/arch_diagram.png" width="90%" height="90%">
 <br><em>Project Architecture</em>
 </p>
 
-
+***
 ## Requirements
 - :white_circle: GitHub
 - :white_circle: AWS 
@@ -18,18 +20,13 @@ This project aims to establish a fully automated DevOps pipeline for deploying a
 - :white_circle: SonarQube
 - :white_circle: Openshift cluster
 
+***
+## Project Structure
 
-## Project Components
 
-### 1. Spring Boot Application Deployment Using Jenkins on OpenShift
+### 1. Provisioning AWS Infrastructure Using Terraform
 
-The objective of automating the deployment of a Spring Boot application within an OpenShift cluster is achieved through Jenkins. By developing Jenkins pipelines that efficiently manage the deployment lifecycle from code commit to production deployment, we ensure a scalable and resilient process. 
-
-{screenshots}
-
-### 2. AWS Infrastructure Provisioning Using Terraform
-
-Provision and manage a complete AWS infrastructure using Terraform, enabling IaC practices. This approach not only streamlines the creation of AWS resources but also integrates them with CloudWatch for monitoring and alerting.
+Terraform is used to provide and manage a whole AWS infrastructure, allowing IaC processes and streamlining resource generation while also integrating with CloudWatch for monitoring and alerting.
 
 
 **Deploying the terraform modules to provision resources:**
@@ -41,9 +38,10 @@ $ unzip awscliv2.zip
 $ sudo ./aws/install
 $ aws configure
 ```
-### 3. EC2 Instance Configuration Using Ansible
-Utilizing Ansible for configuring AWS EC2 instances to host services such as Git, Docker, Java, Jenkins, SonarQube, and OpenShift. This approach ensures consistent and repeatable setups across instances, leading to fully configured and operational EC2 instances ready to support various stages of the DevOps pipeline.
+### 2. Configuration Using Ansible
+Ansible is used to configure AWS EC2 instances for various services like Git, Docker, Java, Jenkins, SonarQube, and OpenShift. Ensuring uniform and repeatable configurations across instances, resulting in fully operational EC2 instances for various DevOps pipeline steps.
 1. Create a key pair on AWS. Download it to be used in the dynamic inventory and change its permissions as follows:
+
 ```shell
 $ chmod 400 finalprojectKey.pem
 ```
@@ -52,23 +50,26 @@ $ chmod 400 finalprojectKey.pem
 $ ansible-playbook -i inventory/aws_ec2.yml playbook.yml
 ```
 
+### 3. Containerization of the Application
 
-### 4. Centralized Monitoring and Logging with OpenShift
-Implement a centralized monitoring and logging system within the OpenShift cluster. We gain insights into application performance and overall cluster health, thus enhancing operational visibility and intelligence.
+Involves containerizing the Java application, ensuring consistency and ease of deployment through the creation of a Dockerfile detailing dependencies and configurations.
 
-### 5. Containerization of the Java Application
+### 4. Using Jenkins for Application Deployment on OpenShift
 
-Containerizing the Java application is a key part of this project, ensuring environment consistency and ease of deployment. The development of a Dockerfile, detailing all dependencies and configurations, leads to a containerized version of the Java application. 
-
-### 6. CI/CD Automation with Jenkins
-
-Automate the CI/CD process using Jenkins, thereby streamlining the application deployment lifecycle. The development of a Jenkins pipeline script integrates various stages, including code build, testing, and deployment. This results in a seamless, automated pipeline that accelerates the release cycle and reduces manual intervention.
-
+Jenkins automates Spring Boot application deployment in OpenShift clusters, managing code commit to production deployment efficiently, ensuring a scalable and resilient process.
 
 <p align="center"><img src="./screenshots/jenkins-success.png" width="90%" height="90%">
 <br><em>Jenkins Pipeline Successful Build</em>
 </p>
 
+### 5. CI/CD Automation with Jenkins
+
+Jenkins automates the code build, testing, and deployment stages of the CI/CD process, resulting in a smooth, automated pipeline that speeds up the release cycle while reducing manual involvement.
+
+### 6. Centralized Monitoring and Logging with OpenShift
+
+Implement a centralized monitoring system within the OpenShift cluster to boost operational visibility by gathering data on application performance and cluster health.
+
 ## Conclusion
 
-This project successfully combines various advanced tools to create an efficient and automated system for deploying and managing a Spring Boot application. By using Jenkins for automation, OpenShift for orchestration, Terraform for setting up AWS infrastructure, Ansible for configuration, and Docker for containerization, we've streamlined the entire deployment process. This approach not only makes deploying applications quicker and more reliable but also ensures consistent performance and easy monitoring. The result is a straightforward, effective, and modern solution that meets the demands of today’s fast-paced software development and deployment needs.
+The project developed an efficient Spring Boot application deployment system using advanced tools like Jenkins, OpenShift, Terraform, Ansible, and Docker. This system streamlines the deployment process, making it quicker, more reliable, and ensuring consistent performance. The result is a modern, effective solution that meets the demands of fast-paced software development.
