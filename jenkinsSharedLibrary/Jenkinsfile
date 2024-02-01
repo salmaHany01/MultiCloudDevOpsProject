@@ -1,0 +1,48 @@
+@Library('jenkins-shared-library') _
+
+pipeline {
+    agent any
+    environment {
+        GITHUB_REPO = "salmaHany01/MultiCloudDevOpsProject"
+        imageNameapp = "${DOCKER_REGISTRY}:${imageTagApp}"
+        DOCKER_REGISTRY = "salmahany3010"
+        DOCKER_IMAGE = "spring-boot"
+        OPENSHIFT_SERVER = 'https://api.ocpuat.devopsconsulting.org:6443'
+        OPENSHIFT_PROJECT = 'salmahany'
+        APP_PORT = '8080'
+        APP_SERVICE_NAME = 'spring-boot'
+        APP_HOST_NAME = 'springboot.apps.ocpuat.devopsconsulting.org'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkoutRepo.checkoutRepo("https://github.com/${GITHUB_REPO}.git", 'dev')
+            }
+        }
+        stage('Unit Test') {
+            steps {
+                runUnitTest.runUnitTest()
+            }
+        }
+        stage('SonarQube Test Analysis') {
+            steps {
+                sonarqubeTest.sonarqubeTest()
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                buildDockerImage.buildDockerImage(imageNameApp, DOCKER_REGISTRY, DOCKER_IMAGE)
+            }
+        }
+        stage('Push Image to DockerHub') {
+            steps {
+                pushDockerImage.pushDockerImage(DOCKER_REGISTRY, DOCKER_IMAGE, imageTagApp)
+            }
+        }
+        stage('Deploy Application on OpenShift') {
+            steps {
+                deployAppOnOpenshift.deployAppOnOpenshift(OPENSHIFT_SERVER, OPENSHIFT_PROJECT, DOCKER_IMAGE, imageTagApp, APP_SERVICE_NAME)
+            }
+        }
+    }
+}

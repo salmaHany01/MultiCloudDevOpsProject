@@ -1,0 +1,25 @@
+---
+- name: Add Jenkins repository
+  get_url:
+    url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+    dest: /etc/yum.repos.d/jenkins.repo
+  register: result
+  until: result is succeeded
+  retries: 5
+  delay: 5
+
+- name: Import Jenkins repository GPG key
+  rpm_key:
+    key: https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+    state: present
+
+- name: Install Jenkins
+  yum:
+    name: jenkins
+    state: latest
+
+- name: Start and enable jenkins
+  systemd:
+    name: jenkins
+    state: started
+    enabled: yes
