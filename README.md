@@ -4,9 +4,8 @@
 
 This project aims to establish a fully automated DevOps pipeline for deploying a Spring Boot application. Leveraging a suite of powerful tools including Jenkins, OpenShift, Terraform, Ansible, and Docker, the project embodies the principles of Infrastructure as Code (IaC), Continuous Integration (CI), and Continuous Deployment (CD). The end goal is to achieve streamlined, automated, and efficient deployment processes with robust monitoring and alerting capabilities.
 
-<p align="center"><img src="https://github.com/salmaHany01/MultiCloudDevOpsProject/screenshots/arch_diagram.png" width="90%" height="90%">
+![arch_diagram](https://github.com/salmaHany01/MultiCloudDevOpsProject/screenshots/arch_diagram.png)
 <br><em>Project Architecture</em>
-</p>
 
 
 ## Requirements
@@ -25,7 +24,6 @@ This project aims to establish a fully automated DevOps pipeline for deploying a
 
 The objective of automating the deployment of a Spring Boot application within an OpenShift cluster is achieved through Jenkins. By developing Jenkins pipelines that efficiently manage the deployment lifecycle from code commit to production deployment, we ensure a scalable and resilient process. 
 
-{screenshots}
 
 ### 2. AWS Infrastructure Provisioning Using Terraform
 
@@ -65,9 +63,8 @@ Containerizing the Java application is a key part of this project, ensuring envi
 Automate the CI/CD process using Jenkins, thereby streamlining the application deployment lifecycle. The development of a Jenkins pipeline script integrates various stages, including code build, testing, and deployment. This results in a seamless, automated pipeline that accelerates the release cycle and reduces manual intervention.
 
 
-<p align="center"><img src="https://github.com/salmaHany01/MultiCloudDevOpsProject/screenshots/jenkins-success.png" width="90%" height="90%">
-<br><em>caption</em>
-</p>
+![jenkins-success](https://github.com/salmaHany01/MultiCloudDevOpsProject/screenshots/jenkins-success.png)
+<br><em>Jenkins Pipeline Successful Build</em>
 
 ## Conclusion
 
