@@ -1,0 +1,9 @@
+---
+- name: Install Docker
+  yum:
+    name: docker
+    state: latest
+  notify:
+    - start docker
+
+

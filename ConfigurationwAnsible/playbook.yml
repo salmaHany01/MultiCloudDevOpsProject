@@ -1,0 +1,12 @@
+---
+- name: Configure EC2 Instances
+  hosts: _FinalProjectEC2
+  become: true
+  roles:
+    - git
+    - docker
+    - java
+    - jenkins
+    - sonarqube
+    - openshift
+    - environment

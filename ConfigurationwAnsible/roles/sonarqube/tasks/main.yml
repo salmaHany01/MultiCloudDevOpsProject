@@ -1,0 +1,27 @@
+---
+- name: Install SonarQube prerequisites
+  yum:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - unzip
+    - java-1.8.0-amazon-corretto-devel
+    - postgresql15
+
+- name: Copy file from local machine to managed host
+  copy:
+    src: ../files/docker-compose.yml
+    dest: /home/ec2-user/
+
+- name: Executing necessary commands for ElasticSearch
+  command: "{{ item }}"
+  loop:
+    - sysctl -w vm.max_map_count=524288
+    - sysctl -w fs.file-max=131072
+    - ulimit -n 131072
+    - ulimit -u 8192
+ 
+
+- name: Run Docker Compose
+  command: "docker compose -f /home/ec2-user/docker-compose.yml up -d"
+

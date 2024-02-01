@@ -1,0 +1,7 @@
+---
+- name: Set up environment variables
+  lineinfile:
+    path: /etc/environment
+    line: 'YOUR_ENV_VAR=your_value'
+    create: yes
+# Add more tasks for other environment variables

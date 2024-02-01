@@ -1,0 +1,30 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id "org.sonarqube" version "4.4.1.3373"
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // Add this if using Thymeleaf
+}
+
+test {
+    useJUnitPlatform()
+}
+
+sonar {
+  properties {
+    property "sonar.projectKey", "sonarqubeProjectEE"
+    property "sonar.projectName", "sonarqubeProjectEE"
+  }
+}

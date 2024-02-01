@@ -1,0 +1,10 @@
+---
+- name: Install Java
+  yum:
+    name: java-1.8.0-amazon-corretto
+    state: present
+
+- name: Install version for jenkins
+  yum: 
+    name: java-17-amazon-corretto 
+    state: present

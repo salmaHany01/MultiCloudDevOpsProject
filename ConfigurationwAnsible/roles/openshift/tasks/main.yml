@@ -1,0 +1,34 @@
+- name: Create ~/.kube/ directory
+  file:
+    path: "~/.kube/"
+    state: directory
+
+- name: Copy config file to /.kube/ directory
+  copy:
+    src: ../files/config
+    dest: "~/.kube/"
+    mode: 0600
+
+- name: Download OpenShift client tools
+  get_url:
+    url: "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.10.1/openshift-client-linux.tar.gz"
+    dest: "/tmp/openshift-client-linux.tar.gz"
+
+- name: Extract OpenShift client tools
+  ansible.builtin.unarchive:
+    src: "/tmp/openshift-client-linux.tar.gz"
+    dest: "/tmp/openshift-client"
+
+- name: Copy oc binary to /usr/local/bin/
+  ansible.builtin.copy:
+    src: "/tmp/openshift-client/oc"
+    dest: "/usr/local/bin/"
+    mode: 0755
+
+- name: Check OpenShift version
+  command: oc version
+  register: oc_version_output
+
+- name: Output OpenShift version
+  debug:
+    var: oc_version_output.stdout
