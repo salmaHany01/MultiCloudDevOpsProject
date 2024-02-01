@@ -66,7 +66,7 @@ Automate the CI/CD process using Jenkins, thereby streamlining the application d
 
 
 <p align="center"><img src="./screenshots/jenkins-success.png" width="90%" height="90%">
-<br><em>caption</em>
+<br><em>Jenkins Pipeline Successful Build</em>
 </p>
 
 ## Conclusion
