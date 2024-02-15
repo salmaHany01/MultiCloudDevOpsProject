@@ -1,16 +1,16 @@
 # Project Overview: Automated DevOps Pipeline for a Spring Boot Application
-***
+
 ## Introduction
 
 This project seeks to provide a completely automated DevOps pipeline for deploying a Spring Boot application. The project embraces the ideas of Infrastructure as Code (IaC), Continuous Integration (CI), and Continuous Deployment (CD), utilising a range of strong technologies such as Jenkins, OpenShift, Terraform, Ansible, and Docker. The ultimate aim is to have simplified, automated, and fast deployment procedures that include powerful monitoring and alerting capabilities.
 
-***
+
 ## Architecture Overview
 <p align="center"><img src="./screenshots/arch_diagram.png" width="90%" height="90%">
 <br><em>Project Architecture</em>
 </p>
 
-***
+
 ## Requirements
 - :white_circle: GitHub
 - :white_circle: AWS 
@@ -20,7 +20,7 @@ This project seeks to provide a completely automated DevOps pipeline for deployi
 - :white_circle: SonarQube
 - :white_circle: Openshift cluster
 
-***
+
 ## Project Structure
 
 
